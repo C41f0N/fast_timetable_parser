@@ -1,11 +1,12 @@
 import pandas as pd
+from class_object import isValidClass
 
-timeTable = pd.ExcelFile("timetable.xlsx")
+fileName = "timetable.xlsx"
 
-# Getting sheet names
-sheetNames = timeTable.sheet_names
+timeTable = pd.ExcelFile(fileName)
 
 
+# Checks if given string qualifies as a day name
 def is_weekday(sheetName):
     weekdays = [
         "MONDAY",
@@ -23,4 +24,18 @@ def is_weekday(sheetName):
         return False
 
 
-print(is_weekday("january"))
+for sheet in timeTable.sheet_names:
+    # for sheets that qualify as weekdays
+    if is_weekday(sheet):
+        print(f"*** DATA FOR {sheet.upper()} ***")
+
+        dayTimeTable = timeTable.parse(sheet, header=3, index_col=0)
+        classesArray = dayTimeTable.to_numpy()
+
+        for row in classesArray:
+            for classData in row:
+                print("\n")
+                print(classData)
+                print(isValidClass(classData))
+
+        break
