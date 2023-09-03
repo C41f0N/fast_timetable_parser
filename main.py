@@ -1,10 +1,29 @@
+import time
 import pandas as pd
 import class_object as co
 from class_object import Class
 
 fileName = "timetable.xlsx"
 
-print("\n[+] Hold up, let me read the timetable 🧐...\n")
+print(" _______ _______  ______ _______    _______ _                         _     _        ")
+print("(_______|_______)/ _____|_______)  (_______|_)              _        | |   | |       ")
+print(" _____   _______( (____     _          _    _ ____  _____ _| |_ _____| |__ | | _____ ")
+print("|  ___) |  ___  |\____ \   | |        | |  | |    \| ___ (_   _|____ |  _ \| || ___ |")
+print("| |     | |   | |_____) )  | |        | |  | | | | | ____| | |_/ ___ | |_) ) || ____|")
+print("|_|     |_|   |_(______/   |_|        |_|  |_|_|_|_|_____)  \__)_____|____/ \_)_____)")
+print("                                                                                     ")
+print(" ______                                                                              ")
+print("(_____ \                                                                             ")
+print(" _____) )____  ____ ___ _____  ____                                                  ")
+print("|  ____(____ |/ ___)___) ___ |/ ___)                                                 ")
+print("| |    / ___ | |  |___ | ____| |                                                     ")
+print("|_|    \_____|_|  (___/|_____)_|                                                     ")
+print("                                                                                     ")
+
+# Created by Sarim Ahmed (github.com/thenoisyninga)
+
+print("\n[+] Welcome.\n[+] Hold up, let me read the timetable 🧐...\n")
+
 timeTable = pd.ExcelFile(fileName)
 
 
@@ -28,12 +47,13 @@ def is_weekday(sheetName):
 
 # Ask the user for their section number
 section = str(input("Write your section (pattern I will use to search for your classes): "))
-
+print("")
 
 # check every sheet
 for sheet in timeTable.sheet_names:
     # for sheets who's name are weekdays
     if is_weekday(sheet):
+        time.sleep(0.25)
         print("=========================================================")
         print(f"            📚 SCHEDULE FOR {sheet.upper()} 🖊️ ")
         print("=========================================================\n")
@@ -102,4 +122,4 @@ for sheet in timeTable.sheet_names:
             pattern=section,
         )
 
-print("\n[-] Thank you for choosing my services! 😊🫡, now i will die.")
+print("\n[-] Thank you for choosing my services! 😊🫡, now i will die.\n\n")
