@@ -6,7 +6,7 @@ Feel free to contribute to the project. As of now it is not ideal for those with
 
 ![image](https://github.com/thenoisyninga/fast_timetable_parser/assets/88588593/44abd4b2-68db-465b-bcb4-42fe8c4b12c2)
 
-![image](https://github.com/thenoisyninga/fast_timetable_parser/assets/88588593/acac6532-81b3-4e4f-8da2-7d0eb9829720)
+![image](https://github.com/thenoisyninga/fast_timetable_parser/assets/88588593/fa24d16b-e24e-42d5-9517-c2dfd9cac268)
 
 # Usage
 - Run main.py after copying the timetable excel file into the root directory of main.py
