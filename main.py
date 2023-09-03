@@ -1,5 +1,5 @@
 import pandas as pd
-import class_object
+import class_object as co
 from class_object import Class
 
 fileName = "timetable.xlsx"
@@ -7,7 +7,7 @@ fileName = "timetable.xlsx"
 timeTable = pd.ExcelFile(fileName)
 
 
-# Checks if given string qualifies as a day name
+# Funciton to check if given string is a day name
 def is_weekday(sheetName):
     weekdays = [
         "MONDAY",
@@ -25,18 +25,21 @@ def is_weekday(sheetName):
         return False
 
 
+# check every sheet
 for sheet in timeTable.sheet_names:
-    # for sheets that qualify as weekdays
+    # for sheets who's name are weekdays
     if is_weekday(sheet):
-        print(f"*** DATA FOR {sheet.upper()} ***")
+        print("=========================================================")
+        print(f"         *** DATA FOR {sheet.upper()} ***")
+        print("=========================================================")
 
         dayClasses = []
 
-        # Read complete excel sheet including the title columns/rows
+        # Read complete excel sheet including the title columns/rows in this variable
         completeExcelSheet = timeTable.parse(sheet)
         completeExcelSheetArray = completeExcelSheet.to_numpy()
 
-        # Read excel sheet excluding the title columns/rows
+        # Read excel sheet excluding the title columns/rows in this variable
         dayTimeTable = timeTable.parse(sheet, header=3, index_col=0)
         classesArray = dayTimeTable.to_numpy()
 
@@ -47,71 +50,48 @@ for sheet in timeTable.sheet_names:
                 classData = row[j]
 
                 # if the current slot is a valid class
-                if class_object.isValidClassData(classData):
+                if co.isValidClassData(classData):
                     # reading slot time and classroom and slot number(index)
                     classroom = completeExcelSheetArray[i + 3][0]
                     timeSlot = completeExcelSheetArray[1][j + 1]
                     index = completeExcelSheetArray[0][j + 1]
 
-                    # extracting more info from the class
+                    # extracting more info from the class cell
                     instructor = str(classData).split("\n")[1].rstrip().lstrip()
                     course = str(classData).split("\n")[0].rstrip().lstrip()
 
-                    # this part accounts for the merged cells for lab classes
+                    # (this next part accounts for the merged cells used for lab classes)
 
                     # checking if current cell is a lab class
-                    if class_object.isLabClassData(classData):
-                        # Create the next three class slots instead of one
+                    if co.isLabClassData(classData):
+                        # Update the timeslot duration to extend to 3 slots
 
-                        # get the timeslot for next two slots
-                        timeSlot2 = completeExcelSheetArray[1][(j + 1) + 1]
-                        timeSlot3 = completeExcelSheetArray[1][(j + 1) + 2]
+                        # get the timeslot for the last lab slot
+                        labLastTimeSlot = completeExcelSheetArray[1][(j + 1) + 2]
 
-                        labClass1 = currentClass = Class(
-                            time_slot=timeSlot,
-                            instructor=instructor,
-                            room=classroom,
-                            weekday=sheet,  # sheetname is weekday
-                            index=index,
-                            course=course,
-                        )
-
-                        labClass2 = currentClass = Class(
-                            time_slot=timeSlot2,
-                            instructor=instructor,
-                            room=classroom,
-                            weekday=sheet,  # sheetname is weekday
-                            index=index + 1,
-                            course=course,
-                        )
-
-                        labClass3 = currentClass = Class(
-                            time_slot=timeSlot3,
-                            instructor=instructor,
-                            room=classroom,
-                            weekday=sheet,  # sheetname is weekday
-                            index=index + 2,
-                            course=course,
-                        )
-
-                        dayClasses.append(labClass1)
-                        dayClasses.append(labClass2)
-                        dayClasses.append(labClass3)
+                        # new timeslot = the starting time of the first slot and the
+                        # ending time of the last slot
+                        timeSlot = f"{timeSlot.split('-')[0].strip()}-{labLastTimeSlot.split('-')[1].strip()}"
 
                         pass
 
-                    else:
-                        # Create a class object using the classData
-                        currentClass = Class(
-                            time_slot=timeSlot,
-                            instructor=instructor,
-                            room=classroom,
-                            weekday=sheet,  # sheetname is weekday
-                            index=index,
-                            course=course,
-                        )
+                    # Create a class object using the classData
+                    currentClass = Class(
+                        time_slot=timeSlot,
+                        instructor=instructor,
+                        room=classroom,
+                        weekday=sheet,  # sheetname is weekday
+                        index=index,
+                        course=course,
+                    )
 
-                        dayClasses.append(currentClass)
+                    dayClasses.append(currentClass)
 
-        class_object.displayClassObjectList(dayClasses)
-        break
+        # there is a second argument which takes your section
+        # name as a pattern to search for when printing class' data, if
+        # it is set to None, the progarm will print all slots.
+
+        co.displayClassObjectList(
+            classObjectList=dayClasses,
+            pattern="BCS-1D",
+        )

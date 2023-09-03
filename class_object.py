@@ -22,14 +22,23 @@ def isLabClassData(classDataString):
     return "LAB" in re.split("\s|-", str(classDataString))
 
 
-def displayClassObjectList(classObjectList):
+def displayClassObjectList(classObjectList, pattern):
+    hasAtleastOneSlot = False
+
     for classSlot in classObjectList:
-        if classSlot.has_in_course("BCS-1D"):
-            print("=================================================")
-            print(classSlot.course)
-            print(classSlot.time_slot)
-            print(classSlot.instructor)
-            print(classSlot.room)
-            print(classSlot.weekday)
-            print(classSlot.index)
-            print("=================================================\n\n")
+        if pattern == None:
+            pattern = ""
+
+        if classSlot.has_in_course(pattern):
+            hasAtleastOneSlot = True
+
+            print(f"course: {classSlot.course}")
+            print(f"time_slot: {classSlot.time_slot}")
+            print(f"instructor: {classSlot.instructor}")
+            print(f"room: {classSlot.room}")
+            print(f"weekday: {classSlot.weekday}")
+            print(f"index: {classSlot.index}")
+            print("")
+
+    if not hasAtleastOneSlot:
+        print("\n\n🥳 FREE DAY! 🥳\n\n")
