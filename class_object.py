@@ -25,6 +25,9 @@ def isLabClassData(classDataString):
 def displayClassObjectList(classObjectList, pattern):
     hasAtleastOneSlot = False
 
+    # list of classes that match the pattern
+    currentClasses = {}
+
     for classSlot in classObjectList:
         if pattern == None:
             pattern = ""
@@ -32,12 +35,20 @@ def displayClassObjectList(classObjectList, pattern):
         if classSlot.has_in_course(pattern):
             hasAtleastOneSlot = True
 
-            print(f"Class: {classSlot.course}")
-            print(f"Duration: {classSlot.time_slot}")
-            print(f"Teacher: {classSlot.instructor}")
-            print(f"Room: {classSlot.room}")
-            print("")
+            currentClasses[int(classSlot.index)] = classSlot
+
     if not hasAtleastOneSlot:
         print("\n\n🥳 FREE DAY! 🥳\n\n")
     else:
+        # sorting the dictionary by keys
+        currentClasses = dict(sorted(currentClasses.items()))
+
+        for index in currentClasses:
+            classObject = currentClasses[index]
+            print(f"Class: {classObject.course}")
+            print(f"Duration: {classObject.time_slot}")
+            print(f"Teacher: {classObject.instructor}")
+            print(f"Room: {classObject.room}")
+            print("")
+
         print("\n")
