@@ -17,5 +17,5 @@ The conditions required for the app to continue working on the timetable are as 
 - The position of the title rows and columns (slots numbers, classrooms, slot duration) cannot change.
 - The number of slots and their timings can vary as long as the format of writing time duration does not change.
 - Each class cell should have the instructor and the course seperated by a linebreak ("\n"), the course should come first and instructor second.
-- The labs have to cover exactly 3 slots, cells should be merged.
+- The labs have to cover exactly 3 slots (in succession), cells should be merged.
 - No cells other than the lab ones should be merged.
