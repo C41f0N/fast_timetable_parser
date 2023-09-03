@@ -32,12 +32,10 @@ def displayClassObjectList(classObjectList, pattern):
         if classSlot.has_in_course(pattern):
             hasAtleastOneSlot = True
 
-            print(f"course: {classSlot.course}")
-            print(f"time_slot: {classSlot.time_slot}")
-            print(f"instructor: {classSlot.instructor}")
-            print(f"room: {classSlot.room}")
-            print(f"weekday: {classSlot.weekday}")
-            print(f"index: {classSlot.index}")
+            print(f"Class: {classSlot.course}")
+            print(f"Duration: {classSlot.time_slot}")
+            print(f"Teacher: {classSlot.instructor}")
+            print(f"Room: {classSlot.room}")
             print("")
 
     if not hasAtleastOneSlot:

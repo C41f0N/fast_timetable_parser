@@ -25,12 +25,16 @@ def is_weekday(sheetName):
         return False
 
 
+# Ask the user for their section number
+section = str(input("Enter your section (pattern I will use to search for your classes): "))
+
+
 # check every sheet
 for sheet in timeTable.sheet_names:
     # for sheets who's name are weekdays
     if is_weekday(sheet):
         print("=========================================================")
-        print(f"         *** DATA FOR {sheet.upper()} ***")
+        print(f"            📚 SCHEDULE FOR {sheet.upper()} 🖊️ ")
         print("=========================================================")
 
         dayClasses = []
@@ -91,7 +95,8 @@ for sheet in timeTable.sheet_names:
         # name as a pattern to search for when printing class' data, if
         # it is set to None, the progarm will print all slots.
 
+
         co.displayClassObjectList(
             classObjectList=dayClasses,
-            pattern="BCS-1D",
+            pattern=section,
         )
