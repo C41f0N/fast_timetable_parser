@@ -9,8 +9,10 @@ Feel free to contribute to the project. As of now it is not ideal for those with
 ![image](https://github.com/thenoisyninga/fast_timetable_parser/assets/88588593/fa24d16b-e24e-42d5-9517-c2dfd9cac268)
 
 # Usage
-- Run main.py after copying the timetable excel file into the root directory of main.py
-- The program asks for a section, which basically works as a search query for the courses
+- Install dependencies by running ``` pip install -r requirements.txt ``` in the project directory.
+- Copy the timetable excel file into the project directory.
+- Run main.py.
+- The program asks for a section, which basically works as a search query for the courses.
 
 # Conditions
 The conditions required for the app to continue working on the timetable are as follows:
