@@ -37,6 +37,7 @@ def displayClassObjectList(classObjectList, pattern):
             print(f"Teacher: {classSlot.instructor}")
             print(f"Room: {classSlot.room}")
             print("")
-
     if not hasAtleastOneSlot:
         print("\n\n🥳 FREE DAY! 🥳\n\n")
+    else:
+        print("\n")

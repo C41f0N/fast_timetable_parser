@@ -4,6 +4,7 @@ from class_object import Class
 
 fileName = "timetable.xlsx"
 
+print("\n[+] Hold up, let me read the timetable 🧐...\n")
 timeTable = pd.ExcelFile(fileName)
 
 
@@ -26,7 +27,7 @@ def is_weekday(sheetName):
 
 
 # Ask the user for their section number
-section = str(input("Enter your section (pattern I will use to search for your classes): "))
+section = str(input("Write your section (pattern I will use to search for your classes): "))
 
 
 # check every sheet
@@ -35,7 +36,7 @@ for sheet in timeTable.sheet_names:
     if is_weekday(sheet):
         print("=========================================================")
         print(f"            📚 SCHEDULE FOR {sheet.upper()} 🖊️ ")
-        print("=========================================================")
+        print("=========================================================\n")
 
         dayClasses = []
 
@@ -100,3 +101,5 @@ for sheet in timeTable.sheet_names:
             classObjectList=dayClasses,
             pattern=section,
         )
+
+print("\n[-] Thank you for choosing my services! 😊🫡, now i will die.")
