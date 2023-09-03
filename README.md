@@ -1,4 +1,4 @@
-# FAST Timetable Parser
+# Timetable Parser for FAST NU
 
 A python program to read the timetable excel file and perform operations on it. Basically what Timetable Notificare does, but you can look into it and see how it works, and also it has no UI. It is also compatible with the recent format changes.
 
