@@ -14,4 +14,4 @@ def download_timetable():
     output_file = 'timetable.xlsx'
 
     # Download the file using gdown
-    gdown.download(download_link, output_file, quiet=False)
+    gdown.download(download_link, output_file, quiet=True)
