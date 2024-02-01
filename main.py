@@ -4,17 +4,6 @@ import class_object as co
 from class_object import Class
 from fetch import download_timetable
 
-# we'll add the timetable automatically for you
-# if there's any error, or you have a personal preference you can add it manually
-# by placing it in the same directory as this file and changing the name of the file to timetable.xlsx
-# and then hit enter
-
-choice = input("[+] Do you want to download the timetable automatically from Google Sheet? (y/n): ")
-
-if choice.lower() == "y":
-    download_timetable()
-else:
-    print("[+] Okay, I will use the timetable.xlsx file in this directory.\n")
 
 fileName = "timetable.xlsx"
 
@@ -63,8 +52,16 @@ print(
 
 # Created by Sarim Ahmed (github.com/thenoisyninga)
 
-print("\n[+] Welcome.\n[+] Hold up, let me read the timetable 🧐...\n")
+print("\n[+] Welcome!\n[+] Hold up, let me read the timetable 🧐...\n")
 
+# Automatically add the timetable or add it manually in the same directory as this file with the name timetable.xlsx
+choice = input("[+] Do you want to download the timetable automatically from Google Sheet? (y/n): ")
+if choice.lower() == "y":
+    download_timetable()
+else:
+    print("[+] Okay, I will use the timetable.xlsx file in this directory.\n")
+
+# Read the timetable.xlsx file
 try:
     timeTable = pd.ExcelFile(fileName)
 except FileNotFoundError:
