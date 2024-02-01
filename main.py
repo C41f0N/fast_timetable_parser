@@ -7,20 +7,48 @@ from fetch import download_timetable
 download_timetable()
 fileName = "timetable.xlsx"
 
-print(" _______ _______  ______ _______    _______ _                         _     _        ")
-print("(_______|_______)/ _____|_______)  (_______|_)              _        | |   | |       ")
-print(" _____   _______( (____     _          _    _ ____  _____ _| |_ _____| |__ | | _____ ")
-print("|  ___) |  ___  |\____ \   | |        | |  | |    \| ___ (_   _|____ |  _ \| || ___ |")
-print("| |     | |   | |_____) )  | |        | |  | | | | | ____| | |_/ ___ | |_) ) || ____|")
-print("|_|     |_|   |_(______/   |_|        |_|  |_|_|_|_|_____)  \__)_____|____/ \_)_____)")
-print("                                                                                     ")
-print(" ______                                                                              ")
-print("(_____ \                                                                             ")
-print(" _____) )____  ____ ___ _____  ____                                                  ")
-print("|  ____(____ |/ ___)___) ___ |/ ___)                                                 ")
-print("| |    / ___ | |  |___ | ____| |                                                     ")
-print("|_|    \_____|_|  (___/|_____)_|                                                     ")
-print("                                                                                     ")
+print(
+    " _______ _______  ______ _______    _______ _                         _     _        "
+)
+print(
+    "(_______|_______)/ _____|_______)  (_______|_)              _        | |   | |       "
+)
+print(
+    " _____   _______( (____     _          _    _ ____  _____ _| |_ _____| |__ | | _____ "
+)
+print(
+    "|  ___) |  ___  |\____ \   | |        | |  | |    \| ___ (_   _|____ |  _ \| || ___ |"
+)
+print(
+    "| |     | |   | |_____) )  | |        | |  | | | | | ____| | |_/ ___ | |_) ) || ____|"
+)
+print(
+    "|_|     |_|   |_(______/   |_|        |_|  |_|_|_|_|_____)  \__)_____|____/ \_)_____)"
+)
+print(
+    "                                                                                     "
+)
+print(
+    " ______                                                                              "
+)
+print(
+    "(_____ \                                                                             "
+)
+print(
+    " _____) )____  ____ ___ _____  ____                                                  "
+)
+print(
+    "|  ____(____ |/ ___)___) ___ |/ ___)                                                 "
+)
+print(
+    "| |    / ___ | |  |___ | ____| |                                                     "
+)
+print(
+    "|_|    \_____|_|  (___/|_____)_|                                                     "
+)
+print(
+    "                                                                                     "
+)
 
 # Created by Sarim Ahmed (github.com/thenoisyninga)
 
@@ -41,14 +69,16 @@ def is_weekday(sheetName):
         "SUNDAY",
     ]
 
-    if weekdays.__contains__(str(sheetName).upper()):
+    if weekdays.__contains__(str(sheetName).strip().upper()):
         return True
     else:
         return False
 
 
 # Ask the user for their section number
-section = str(input("Write your section (pattern I will use to search for your classes): "))
+section = str(
+    input("Write your section (pattern I will use to search for your classes): ")
+)
 print("")
 
 # check every sheet
@@ -117,7 +147,6 @@ for sheet in timeTable.sheet_names:
         # there is a second argument which takes your section
         # name as a pattern to search for when printing class' data, if
         # it is set to None, the progarm will print all slots.
-
 
         co.displayClassObjectList(
             classObjectList=dayClasses,
