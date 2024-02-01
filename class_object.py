@@ -22,7 +22,7 @@ def isValidClassData(classDataString):
 
 def isLabClassData(classDataString):
     # checks if the word "LAB" exists in the cell
-    return "LAB" in re.split("\s|-", str(classDataString))
+    return "lab" in re.split("\s|-", str(classDataString.lower()))
 
 
 def displayClassObjectList(classObjectList, pattern):
