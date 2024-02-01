@@ -5,7 +5,7 @@ def download_timetable():
 
     # Get the file ID from the Google Sheets URL
     file_id = google_sheets_url.split('/')[-2]
-    print(file_id)
+    # print(file_id)
 
     # Construct the download link
     download_link = f'https://drive.google.com/uc?id={file_id}'

@@ -4,7 +4,18 @@ import class_object as co
 from class_object import Class
 from fetch import download_timetable
 
-download_timetable()
+# we'll add the timetable automatically for you
+# if there's any error, or you have a personal preference you can add it manually
+# by placing it in the same directory as this file and changing the name of the file to timetable.xlsx
+# and then hit enter
+
+choice = input("[+] Do you want to download the timetable automatically from Google Sheet? (y/n): ")
+
+if choice.lower() == "y":
+    download_timetable()
+else:
+    print("[+] Okay, I will use the timetable.xlsx file in this directory.\n")
+
 fileName = "timetable.xlsx"
 
 print(
@@ -54,8 +65,13 @@ print(
 
 print("\n[+] Welcome.\n[+] Hold up, let me read the timetable 🧐...\n")
 
-timeTable = pd.ExcelFile(fileName)
-
+try:
+    timeTable = pd.ExcelFile(fileName)
+except FileNotFoundError:
+    print(
+        f"[-] I couldn't find the timetable.xlsx file in this directory, please make sure it is in the same directory as this file and try again.\n"
+    )
+    exit()
 
 # Funciton to check if given string is a day name
 def is_weekday(sheetName):
