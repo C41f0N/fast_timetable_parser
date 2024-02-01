@@ -2,7 +2,9 @@ import time
 import pandas as pd
 import class_object as co
 from class_object import Class
+from fetch import download_timetable
 
+download_timetable()
 fileName = "timetable.xlsx"
 
 print(" _______ _______  ______ _______    _______ _                         _     _        ")
