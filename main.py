@@ -55,9 +55,17 @@ print(
 print("\n[+] Welcome!\n[+] Hold up, let me read the timetable 🧐...\n")
 
 # Automatically add the timetable or add it manually in the same directory as this file with the name timetable.xlsx
-choice = input("[+] Do you want to download the timetable automatically from Google Sheet? (y/n): ")
+choice = input(
+    "[+] Do you want to download the timetable automatically from Google Sheet? (y/n): "
+)
+
 if choice.lower() == "y":
-    download_timetable()
+    print("[+] Attempting to download the new sheet...")
+    downloaded = download_timetable()
+
+    if not downloaded:
+        exit()
+
 else:
     print("[+] Okay, I will use the timetable.xlsx file in this directory.\n")
 
@@ -69,6 +77,7 @@ except FileNotFoundError:
         f"[-] I couldn't find the timetable.xlsx file in this directory, please make sure it is in the same directory as this file and try again.\n"
     )
     exit()
+
 
 # Funciton to check if given string is a day name
 def is_weekday(sheetName):
