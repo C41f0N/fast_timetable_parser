@@ -10,7 +10,7 @@ Feel free to contribute to the project. As of now it is not ideal for those with
 
 # Usage
 - Install dependencies by running ``` pip install -r requirements.txt ``` in the project directory.
-- Copy the timetable excel file into the project directory.
+- Copy the timetable excel file into the project directory, or use the inbuilt method to download the latest timetable.
 - Run main.py.
 - The program asks for a section, which basically works as a search query for the courses.
 
