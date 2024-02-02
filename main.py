@@ -2,6 +2,8 @@ import time
 import pandas as pd
 import class_object as co
 from class_object import Class
+from fetch import download_timetable
+
 
 fileName = "timetable.xlsx"
 
@@ -50,9 +52,31 @@ print(
 
 # Created by Sarim Ahmed (github.com/thenoisyninga)
 
-print("\n[+] Welcome.\n[+] Hold up, let me read the timetable 🧐...\n")
+print("\n[+] Welcome!\n[+] Hold up, let me read the timetable 🧐...\n")
 
-timeTable = pd.ExcelFile(fileName)
+# Automatically add the timetable or add it manually in the same directory as this file with the name timetable.xlsx
+choice = input(
+    "[+] Do you want to download the timetable automatically from Google Sheet? (y/n): "
+)
+
+if choice.lower() == "y":
+    print("[+] Attempting to download the new sheet...")
+    downloaded = download_timetable()
+
+    if not downloaded:
+        exit()
+
+else:
+    print("[+] Okay, I will use the timetable.xlsx file in this directory.\n")
+
+# Read the timetable.xlsx file
+try:
+    timeTable = pd.ExcelFile(fileName)
+except FileNotFoundError:
+    print(
+        f"[-] I couldn't find the timetable.xlsx file in this directory, please make sure it is in the same directory as this file and try again.\n"
+    )
+    exit()
 
 
 # Funciton to check if given string is a day name
