@@ -25,21 +25,22 @@ def isLabClassData(classDataString):
     return "lab" in re.split("\s|-", str(classDataString.lower()))
 
 
-def displayClassObjectList(classObjectList, pattern):
+def displayClassObjectList(classObjectList, patternList):
     hasAtleastOneSlot = False
 
     # list of classes that match the pattern
     currentClasses = {}
 
-    for classSlot in classObjectList:
-        if pattern == None:
-            pattern = ""
+    for pattern in patternList:
+        for classSlot in classObjectList:
+            if pattern == None:
+                pattern = ""
 
-        if classSlot.has_in_course(pattern):
-            hasAtleastOneSlot = True
+            if classSlot.has_in_course(pattern):
+                hasAtleastOneSlot = True
 
-            # putting matching slots in dictionary with the slot index as key
-            currentClasses[int(classSlot.index)] = classSlot
+                # putting matching slots in dictionary with the slot index as key
+                currentClasses[int(classSlot.index)] = classSlot
 
     if not hasAtleastOneSlot:
         print("\n\n🥳 FREE DAY! 🥳\n\n")

@@ -4,50 +4,25 @@ import class_object as co
 from class_object import Class
 from fetch import download_timetable
 
-
 fileName = "timetable.xlsx"
 
 print(
-    " _______ _______  ______ _______    _______ _                         _     _        "
-)
-print(
-    "(_______|_______)/ _____|_______)  (_______|_)              _        | |   | |       "
-)
-print(
-    " _____   _______( (____     _          _    _ ____  _____ _| |_ _____| |__ | | _____ "
-)
-print(
-    "|  ___) |  ___  |\____ \   | |        | |  | |    \| ___ (_   _|____ |  _ \| || ___ |"
-)
-print(
-    "| |     | |   | |_____) )  | |        | |  | | | | | ____| | |_/ ___ | |_) ) || ____|"
-)
-print(
-    "|_|     |_|   |_(______/   |_|        |_|  |_|_|_|_|_____)  \__)_____|____/ \_)_____)"
-)
-print(
-    "                                                                                     "
-)
-print(
-    " ______                                                                              "
-)
-print(
-    "(_____ \                                                                             "
-)
-print(
-    " _____) )____  ____ ___ _____  ____                                                  "
-)
-print(
-    "|  ____(____ |/ ___)___) ___ |/ ___)                                                 "
-)
-print(
-    "| |    / ___ | |  |___ | ____| |                                                     "
-)
-print(
-    "|_|    \_____|_|  (___/|_____)_|                                                     "
-)
-print(
-    "                                                                                     "
+    """
+ _______ _______  ______ _______    _______ _                         _     _        
+(_______|_______)/ _____|_______)  (_______|_)              _        | |   | |       
+ _____   _______( (____     _          _    _ ____  _____ _| |_ _____| |__ | | _____ 
+|  ___) |  ___  |\____ \   | |        | |  | |    \| ___ (_   _|____ |  _ \| || ___ |
+| |     | |   | |_____) )  | |        | |  | | | | | ____| | |_/ ___ | |_) ) || ____|
+|_|     |_|   |_(______/   |_|        |_|  |_|_|_|_|_____)  \__)_____|____/ \_)_____)
+                                                                                     
+ ______                                                                              
+(_____ \                                                                             
+ _____) )____  ____ ___ _____  ____                                                  
+|  ____(____ |/ ___)___) ___ |/ ___)                                                 
+| |    / ___ | |  |___ | ____| |                                                     
+|_|    \_____|_|  (___/|_____)_|                                                     
+                                                                                     
+"""
 )
 
 # Created by Sarim Ahmed (github.com/thenoisyninga)
@@ -55,19 +30,19 @@ print(
 print("\n[+] Welcome!\n[+] Hold up, let me read the timetable 🧐...\n")
 
 # Automatically add the timetable or add it manually in the same directory as this file with the name timetable.xlsx
-choice = input(
-    "[+] Do you want to download the timetable automatically from Google Sheet? (y/n): "
-)
+# choice = input(
+#     "[+] Do you want to download the timetable automatically from Google Sheet? (y/n): "
+# )
 
-if choice.lower() == "y":
-    print("[+] Attempting to download the new sheet...")
-    downloaded = download_timetable()
+# if choice.lower() == "y":
+#     print("[+] Attempting to download the new sheet...")
+#     downloaded = download_timetable()
 
-    if not downloaded:
-        exit()
+#     if not downloaded:
+#         exit()
 
-else:
-    print("[+] Okay, I will use the timetable.xlsx file in this directory.\n")
+# else:
+#     print("[+] Okay, I will use the timetable.xlsx file in this directory.\n")
 
 # Read the timetable.xlsx file
 try:
@@ -98,9 +73,9 @@ def is_weekday(sheetName):
 
 
 # Ask the user for their section number
-section = str(
-    input("Write your section (pattern I will use to search for your classes): ")
-)
+patternList = str(
+    input("Write your section (pattern I will use to search for your classes), you can add multiple patterns too if you have electives, making them comma seperated: ")
+).split(",")
 print("")
 
 # check every sheet
@@ -170,9 +145,9 @@ for sheet in timeTable.sheet_names:
         # name as a pattern to search for when printing class' data, if
         # it is set to None, the progarm will print all slots.
 
-        co.displayClassObjectList(
+        co.displayClassObjectList(  
             classObjectList=dayClasses,
-            pattern=section,
+            patternList=patternList,
         )
 
 print("\n[-] Thank you for choosing my services! 😊🫡, now i will die.\n\n")

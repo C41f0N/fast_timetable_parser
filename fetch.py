@@ -19,8 +19,8 @@ def download_timetable() -> bool:
     try:
         gdown.download(download_link, output_file, quiet=True)
         return True
-    except gdown.exceptions.FileURLRetrievalError:
+    except Exception as e:
         print(
-            "[-] Could not download the file for some reason :(.\n[-] Try using an excel file instead."
+            f"[-] Could not download the file: {e} :(.\n[-] Try using an excel file instead."
         )
         return False
